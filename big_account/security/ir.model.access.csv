@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+account_move_user,account.move.user,account.model_account_move,big_general.group_big_user,1,1,1,0
+account_move_line_user,account.move.line.user,account.model_account_move_line,big_general.group_big_user,1,1,1,0
+account_cash_rounding_user,account.cash.rounding.user,account.model_account_cash_rounding,big_general.group_big_user,1,1,1,0

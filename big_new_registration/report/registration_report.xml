@@ -1,0 +1,26 @@
+<odoo>
+     <report id="action_report_registration"
+             string="Registration Report"
+             model="registration.wizard"
+             report_type="qweb-pdf"
+             menu="True"
+             name="big_new_registration.new_registration"
+             file="big_new_registration.new_registration"/>
+
+     <report id="action_cancel_connection_report"
+            string="Cancel Connection Report"
+            model="big.cancel.wizard"
+            report_type="qweb-pdf"
+            menu="True"
+            name="big_new_registration.cancel_connection"
+            file="big_new_registration.cancel_connection"/>
+
+     <report id="action_payment_receipt"
+            string="Payment Receipt"
+            model="connection.history"
+            report_type="qweb-pdf"
+            name="big_new_registration.report_payment_receipt"
+            file="big_new_registration.report_payment_receipt"
+            menu="False"/>
+
+</odoo>

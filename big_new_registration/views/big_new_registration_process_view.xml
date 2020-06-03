@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- New Connection Form -->
+
+    <record id="view_new_registration_form" model="ir.ui.view">
+        <field name="name">new.registration.process.form</field>
+        <field name="model">new.registration.process</field>
+        <field name="arch" type="xml">
+            <form name="big_new_registration_form">
+                <header>
+                    <button name="action_confirm" type="object" string="Submit" attrs="{'invisible':[('state', '!=', 'draft')]}" class="oe_highlight" confirm="Are you sure you want to Submit this New Connection ?" groups="big_general.group_big_user"/>
+                    <button name="action_done" type="object" string="Approve" attrs="{'invisible':[('state', 'not in', ('confirm', 'reject'))]}" class="oe_highlight" confirm="Are you sure you want to Approve this New Connection ?" groups="big_general.group_big_manager" context="{'security_deposit':True}"/>
+                    <button name="action_reject" type="object" string="Reject" attrs="{'invisible':[('state', '!=', 'confirm')]}" class="oe_highlight" confirm="Are you sure you want to Reject this Connection Process ?" groups="big_general.group_big_manager"/>
+                    <button name="action_cancel" type="object" string="Cancel" attrs="{'invisible':[('state', '!=', 'draft')]}" class="oe_highlight" confirm="Are you sure you want to cancel this Connection Process ?" groups="big_general.group_big_user,big_general.group_big_manager"/>
+                    <button name="action_reset_to_draft" type="object" string="Reset to Draft" attrs="{'invisible':[('state', '!=', 'cancel')]}" class="oe_highlight" confirm="Are you sure you want to Reset this New Connection Process ?" groups="big_general.group_big_user,big_general.group_big_manager"/>
+                    <button name="action_card_replacement" type="object" string="New Customer Card Request" attrs="{'invisible':[('state', '!=', 'done')]}" class="oe_highlight" confirm="Are you sure you want to send request for New Customer Card ?" groups="big_general.group_big_user"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="number" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" required="True" attrs="{'readonly':[('state','!=', 'draft')]}" domain="[('is_pos_customer' ,'=', False)]" context="{'default_is_company':True}"/>
+                            <field name="license_number"/>
+                            <field name="cid_number"/>
+                            <field name="state_id" string="Location"/>
+                            <field name="phone_number"/>
+                            <field name="company_id" readonly="True"/>
+                            <field name="user_id" readonly="True"/>
+                        </group>
+                        <group>
+                            <field name="date" readonly="True"/>
+                            <field name="cylinder_qty" required="True" attrs="{'readonly':[('state','!=', 'draft')]}" />
+                            <field name="currency_id" invisible="True"/>
+                            <field name="security_deposit_amount"  widget="monetary"/>
+                            <field name="payment_mode" required="True" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                            <field name="cheque_no" attrs="{'readonly':[('state','!=', 'draft')], 'invisible':[('payment_mode','=','cash')], 'required':[('payment_mode','=','cheque')]}"/>
+                            <field name="cheque_date" attrs="{'readonly':[('state','!=', 'draft')], 'invisible':[('payment_mode','=','cash')], 'required':[('payment_mode','=','cheque')]}"/>
+                            <field name="money_receipt_no" readonly="True"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Additional Connections" attrs="{'readonly':[('state','not in', ['draft', 'confirm', 'done'])], 'invisible':[('state','not in', ['done', 'cancel_sales_point', 'cancel_big'])]}">
+                            <field name="additional_connection_ids" attrs="{'readonly':[('state','!=', 'done')]}">
+                                <tree editable="bottom">
+                                    <field name="date" readonly="True"/>
+                                    <field name="money_receipt_no" readonly="True"/>
+                                    <field name="qty" sum="True" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                                    <field name="payment_mode" required="True" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                                    <field name="cheque_no" attrs="{'readonly':[('state','!=', 'draft')], 'invisible':[('payment_mode','=','cash')], 'required':[('payment_mode','=','cheque')]}"/>
+                                    <field name="cheque_date" attrs="{'readonly':[('state','!=', 'draft')], 'invisible':[('payment_mode','=','cash')], 'required':[('payment_mode','=','cheque')]}"/>
+                                    <field name="currency_id" invisible="True"/>
+                                    <field name="security_deposit_amount" sum="True" widget="monetary" readonly="True"/>
+                                    <field name="state" string="Status" readonly="True"/>
+                                    <button name="additional_action_confirm" type="object" string="Submit" attrs="{'invisible':[('state', '!=', 'draft')]}" class="oe_highlight" confirm="Are you sure you want to Submit this Additional Connection ?" groups="big_general.group_big_user"/>
+                                    <button name="additional_action_done" type="object" string="Approve" attrs="{'invisible':[('state', 'not in', ('confirm', 'reject'))]}" class="oe_highlight" confirm="Are you sure you want to Approve this Additional Connection ?" groups="big_general.group_big_manager" context="{'security_deposit':True}"/>
+                                    <button name="additional_action_reject" type="object" string="Reject" attrs="{'invisible':[('state', '!=', 'confirm')]}" class="oe_highlight" confirm="Are you sure you want to Reject this Additional Connection Process ?" groups="big_general.group_big_manager"/>
+                                    <button name="additional_action_cancel" type="object" string="Cancel" attrs="{'invisible':[('state', '!=', 'draft')]}" class="oe_highlight" confirm="Are you sure you want to cancel this Additional Connection Process ?" groups="big_general.group_big_user,big_general.group_big_manager"/>
+                                    <button name="additional_action_reset_to_draft" type="object" string="Reset to Draft" attrs="{'invisible':[('state', '!=', 'cancel')]}" class="oe_highlight" confirm="Are you sure you want to Reset this Additional Connection Process ?" groups="big_general.group_big_user,big_general.group_big_manager"/>
+                                </tree>
+                                <form>
+                                    <header>
+                                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
+                                    </header>
+                                    <group>
+                                        <field name="date" readonly="True"/>
+                                        <field name="qty" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                                        <field name="security_deposit_amount" widget="monetary"/>
+                                        <field name="money_receipt_no" readonly="True"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Connection History" attrs="{'invisible':[('connection_history_ids','=', [])]}">
+                            <field name="connection_history_ids" readonly="True">
+                                <tree decoration-danger="type == 'Cancel Connection'">
+                                    <field name="type"/>
+                                    <field name="date"/>
+                                    <field name="money_receipt_no"/>
+                                    <field name="qty"/>
+                                    <field name="payment_mode"/>
+                                    <field name="cheque_no"/>
+                                    <field name="cheque_date"/>
+                                    <field name="currency_id" invisible="True"/>
+                                    <field name="security_deposit_amount" widget="monetary"/>
+                                    <field name="state" string="Status"/>
+                                    <button string="Payment Receipt" icon="fa-print" name="print_payment_receipt_report" type="object" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Payment History" attrs="{'invisible':[('state','not in', ['done', 'cancel_sales_point', 'cancel_big'])]}" groups="big_general.group_big_user,account.group_account_manager">
+                            <field name="account_payment_ids" readonly="True">
+                                <tree>
+                                    <field name="name" string="Payment Reference No"/>
+                                    <field name="payment_date"/>
+                                    <field name="payment_type"/>
+                                    <field name="communication" string="Descriptions"/>
+                                    <field name="amount"/>
+                                    <field name="state"/>
+                                    <field name="company_id" groups="base.group_multi_company"/>
+                                    <field name="currency_id" invisible="1"/>
+                                    <field name="partner_type" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group col="4" colspan="4">
+                        <field name="notes" nolabel="1" placeholder="Description of the New Connection"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- New Connection Tree view -->
+    <record id="view_new_registration_tree" model="ir.ui.view">
+        <field name="name">new.registration.process.tree</field>
+        <field name="model">new.registration.process</field>
+        <field name="arch" type="xml">
+            <tree>
+                 <field name="number" string="Registration Number"/>
+                 <field name="date"/>
+                 <field name="partner_id"/>
+                 <field name="cid_number"/>
+                 <field name="license_number"/>
+                 <field name="cylinder_qty"/>
+                 <field name="currency_id" invisible="True"/>
+                 <field name="security_deposit_amount" widget="monetary"/>
+                 <field name="user_id"/>
+                 <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- New Connection Search view -->
+    <record id="view_new_registration_search" model="ir.ui.view">
+        <field name="name">new.registration.process.search</field>
+        <field name="model">new.registration.process</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="number"/>
+                <field name="date"/>
+                <field name="partner_id"/>
+                <field name="cid_number"/>
+                <field name="license_number"/>
+                <field name="cylinder_qty"/>
+                <field name="security_deposit_amount"/>
+                <field name="user_id"/>
+                <field name="money_receipt_no"/>
+                <field name="state"/>
+                <filter string="Approved by Sales Point" domain="[('state' ,'=', 'confirm')]" name="filter_confirm"/>
+                <filter string="Approved by BIG" domain="[('state' ,'=', 'done')]" name="filter_done"/>
+                <filter string="State" domain="[]" context="{'group_by':'state'}" name="group_state"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- New Connection Action -->
+    <record id="action_big_new_registration" model="ir.actions.act_window">
+        <field name="name">New Connection Registration</field>
+        <field name="res_model">new.registration.process</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- New Connection Action approved by BIG Manager-->
+    <record id="action_big_new_registration_big" model="ir.actions.act_window">
+        <field name="name">New Connection Approve by BIG Manager</field>
+        <field name="res_model">new.registration.process</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state' ,'=', 'confirm')]</field>
+    </record>
+
+    <!-- Main BIG Menu -->
+    <menuitem id="big_master_menu" name="BIG" sequence="1"
+              groups="big_general.group_big_user,big_general.group_big_manager,big_general.group_big_admin"
+            web_icon="big_new_registration,static/description/web_icon.png"/>
+
+    <!-- Sub Menu for BIG Process -->
+    <menuitem id="big_master_menu_child" parent="big_master_menu" name="BIG Process" sequence="1" groups="big_general.group_big_user,big_general.group_big_manager,big_general.group_big_admin"/>
+    <!-- Child Menu for BIG Process-->
+    <menuitem action="action_big_new_registration" id="menu_action_new_connection_form"
+              parent="big_master_menu_child" sequence="1" string="New Connection Registration" groups="big_general.group_big_user,big_general.group_big_manager,big_general.group_big_admin"/>
+
+    <menuitem action="action_big_new_registration_big" id="menu_action_new_connection_form_big"
+              parent="big_master_menu_child" sequence="2" string="New Connection Approve by BIG Manager" groups="big_general.group_big_manager,big_general.group_big_admin"/>
+
+    <!-- Submenu Configuration Menu -->
+    <menuitem id="big_sub_menu_configure" parent="big_master_menu" name="Configuration" sequence="2" groups="big_general.group_big_manager,big_general.group_big_admin"/>
+    <!-- Child menu for Configuration menu -->
+    <menuitem id="big_child_menu_configuration"
+              parent="big_sub_menu_configure" sequence="1" string="Security Deposit Configuration" groups="big_general.group_big_manager,big_general.group_big_admin"/>
+
+</odoo>

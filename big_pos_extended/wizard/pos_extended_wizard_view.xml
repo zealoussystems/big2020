@@ -1,0 +1,38 @@
+<odoo>
+    <record id="pos_extended_wizard_form_view" model="ir.ui.view">
+        <field name="name">pos.wizard</field>
+        <field name="model">pos.extended.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Pos Details">
+                <group col="2">
+                    <group>
+                        <field name="start_date" required="1"/>
+                    </group>
+                    <group>
+                        <field name="end_date" required="1"/>
+                    </group>
+                    <group>
+                        <field name="partner_id" required="1"  options='{"no_open": True, "no_create": True}'/>
+                    </group>
+                    <group>
+                        <field name="is_lpg"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print_report" string="Print" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window
+            id="action_pos_extended_wizard"
+            name="Customer Sales Details"
+            res_model="pos.extended.wizard"
+            view_mode="form"
+            target="new"
+        />
+    <menuitem id="menu_report_order_details" name="Customer Sales Details" action="action_pos_extended_wizard" parent="point_of_sale.menu_point_of_sale" sequence="105"/>
+    
+</odoo>

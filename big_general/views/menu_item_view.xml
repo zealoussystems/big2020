@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- js for disable confirmation button to prevent twice click -->
+    <template id="assets_backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/big_general/static/src/js/models.js"></script>
+        </xpath>
+    </template>
+
+    <!-- Main BIG Menu -->
+    <menuitem id="big_master_menu" name="BIG" sequence="1" groups="big_general.group_big_user,big_general.group_big_manager,big_general.group_big_admin"/>
+
+    <!-- Configuration Menu -->
+    <menuitem id="big_configure_menu_child" parent="big_master_menu" name="Configuration" sequence="2" groups="big_general.group_big_manager,big_general.group_big_admin"/>
+    <!-- Security Configuration menu -->
+    <menuitem id="menu_action_new_connection_form"
+              parent="big_configure_menu_child" sequence="1" string="Security Deposit Configuration" groups="big_general.group_big_manager,big_general.group_big_admin"/>
+
+</odoo>

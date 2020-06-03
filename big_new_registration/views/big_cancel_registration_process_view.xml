@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Cancel Connection Form -->
+
+    <record id="view_cancel_registration_form" model="ir.ui.view">
+        <field name="name">cancel.connection.form</field>
+        <field name="model">cancel.connection</field>
+        <field name="arch" type="xml">
+            <form name="big_cancel_registration_form">
+                <header>
+                    <button name="action_cancel_salepoint" type="object" string="Surrendered by Sales Point" attrs="{'invisible':[('state', '!=', 'draft')]}" class="oe_highlight" confirm="Are you sure you want to Cancel this Connection ?" groups="big_general.group_big_user"/>
+                    <button name="action_cancel_big" type="object" string="Surrendered by BIG" attrs="{'invisible':[('state', '!=', 'cancel_sales_point')]}" class="oe_highlight" confirm="Are you sure you want to Cancel this Connection ?" groups="big_general.group_big_manager"/>
+                    <button name="action_reject" type="object" string="Reject" attrs="{'invisible':[('state', '!=', 'cancel_sales_point')]}" class="oe_highlight" confirm="Are you sure you want to Reject this cancel Connection Process ?" groups="big_general.group_big_manager"/>
+                    <button name="action_cancel" type="object" string="Cancel" attrs="{'invisible':[('state', 'not in', ('draft','cancel_sales_point'))]}" class="oe_highlight" confirm="Are you sure you want to cancel this Connection Process ?" groups="big_general.group_big_user,big_general.group_big_manager"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,cancel_sales_point,cancel_big"/>
+                </header>
+                <sheet>
+                    <div>
+                        <group>
+                            <group>
+                                <h1>
+                                    <field name="new_connection_id" required="True" attrs="{'readonly':[('state','!=', 'draft')]}" domain="[('cylinder_qty', '>', 0.0),('state', 'not in', ['draft', 'confirm', 'reject', 'cancel'])]" options="{'no_edit':True,'no_create':True}"/>
+                                </h1>
+                            </group>
+                            <group>
+                                <field name="current_cylinder_qty"/>
+                                <field name="current_security_deposit_amount" widget="monetary"/>
+                            </group>
+                        </group>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" required="True" readonly="True"/>
+                            <field name="license_number" required="True" readonly="True"/>
+                            <field name="cid_number"  required="True" readonly="True"/>
+                            <field name="state_id" string="Location"/>
+                            <field name="phone_number"/>
+                            <field name="company_id" readonly="True"/>
+                            <field name="user_id" readonly="True"/>
+                        </group>
+                        <group>
+                            <field name="date" readonly="True"/>
+                            <field name="connection_history_id" attrs="{'readonly':[('state','!=', 'draft')]}" required="True" domain="[('new_connection_id' ,'=', new_connection_id), ('type' ,'in', ['Additional Connection', 'New Connection']),('is_cancel_qty', '=', False), ('state', '=', 'done')]" options="{'no_edit':True,'no_create':True,'no_open':True}"/>
+                            <field name="payment_mode" required="True" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                            <field name="cheque_no" attrs="{'readonly':[('state','!=', 'draft')], 'invisible':[('payment_mode','=','cash')], 'required':[('payment_mode','=','cheque')]}"/>
+                            <field name="cheque_date" attrs="{'readonly':[('state','!=', 'draft')], 'invisible':[('payment_mode','=','cash')], 'required':[('payment_mode','=','cheque')]}"/>
+                            <field name="cylinder_qty" required="True" attrs="{'readonly':[('state','!=', 'draft')]}" />
+                            <field name="is_damage" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                        </group>
+                        <group string="Return Security Deposit Amount : ">
+                            <h1>
+                                <field name="currency_id" invisible="True"/>
+                                <field name="security_deposit_amount" required="True" widget="monetary" readonly="True"/>
+                            </h1>
+                        </group>
+                        <group>
+                            <field name="damage_cylinder_qty" attrs="{'invisible':[('is_damage', '!=', True)], 'required':[('is_damage', '=', True)], 'readonly':[('state','!=', 'draft')]}"/>
+                            <field name="empty_cylinder_qty" attrs="{'invisible':[('is_damage', '!=', True)], 'required':[('is_damage', '=', True)], 'readonly':[('state','!=', 'draft')]}"/>
+                            <field name="is_received_damage" attrs="{'invisible':[('is_damage', '!=', True)], 'readonly':[('state','!=', 'draft')]}"/>
+                            <field name="received_damage_cylinder_qty" attrs="{'invisible':[('is_received_damage', '!=', True)], 'required':[('is_received_damage', '=', True)], 'readonly':[('state','!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group col="4" colspan="4">
+                        <field name="notes" nolabel="1" placeholder="Description of the Cancel Connection"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Cancel Connection Tree view -->
+    <record id="view_cancel_registration_tree" model="ir.ui.view">
+        <field name="name">cancel.connection.tree</field>
+        <field name="model">cancel.connection</field>
+        <field name="arch" type="xml">
+            <tree>
+                 <field name="new_connection_id"/>
+                 <field name="date"/>
+                 <field name="partner_id"/>
+                 <field name="cid_number"/>
+                 <field name="license_number"/>
+                 <field name="cylinder_qty"/>
+                 <field name="connection_history_id"/>
+                 <field name="security_deposit_amount" widget="monetary"/>
+                 <field name="user_id"/>
+                 <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Cancel Connection Search view -->
+    <record id="view_cancel_registration_search" model="ir.ui.view">
+        <field name="name">cancel.connection.search</field>
+        <field name="model">cancel.connection</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="new_connection_id"/>
+                <field name="date"/>
+                <field name="partner_id"/>
+                <field name="cid_number"/>
+                <field name="license_number"/>
+                <field name="cylinder_qty"/>
+                <field name="security_deposit_amount"/>
+                <field name="user_id"/>
+                <field name="connection_history_id"/>
+                <field name="state"/>
+                <filter string="Surrendered by Sales Point" domain="[('state' ,'=', 'cancel_sales_point')]" name="filter_confirm"/>
+                <filter string="Surrendered by BIG" domain="[('state' ,'=', 'cancel_big')]" name="filter_done"/>
+                <filter string="State" domain="[]" context="{'group_by':'state'}" name="group_state"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Cancel Connection Action -->
+    <record id="action_big_cancel_registration" model="ir.actions.act_window">
+        <field name="name">Cancel Connection </field>
+        <field name="res_model">cancel.connection</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Cancel Connection Action by BIG-->
+    <record id="action_big_cancel_registration_big_manager" model="ir.actions.act_window">
+        <field name="name">Cancel Connection Approve by BIG Manager</field>
+        <field name="res_model">cancel.connection</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state' ,'=', 'cancel_sales_point')]</field>
+    </record>
+
+    <!-- Child Menu for BIG Cancel Process-->
+    <menuitem action="action_big_cancel_registration" id="menu_action_cancel_connection_form"
+              parent="big_new_registration.big_master_menu_child" sequence="3" string="Cancel Connection Process" groups="big_general.group_big_user,big_general.group_big_manager,big_general.group_big_admin"/>
+
+    <!-- Child Menu for BIG Cancel Process Approve By BIG Manager-->
+    <menuitem action="action_big_cancel_registration_big_manager" id="menu_action_cancel_connection_form_big"
+              parent="big_new_registration.big_master_menu_child" sequence="4" string="Cancel Connection Approve by BIG Manager" groups="big_general.group_big_manager,big_general.group_big_admin"/>
+
+</odoo>

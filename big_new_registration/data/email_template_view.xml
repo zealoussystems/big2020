@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- Email Template For request to approve new connection -->
+    <record id="email_new_connection_request" model="mail.template">
+       <field name="name">New Connection Registration Request Mail</field>
+       <field name="subject">New Connection Registration Request</field>
+       <field name="model_id" ref="model_new_registration_process"/>
+       <field name="lang">${object.lang}</field>
+       <field name="auto_delete" eval="False"/>
+       <field name="body_html"><![CDATA[
+            <div style="font-family: 'Lucica Grande',
+            Ubuntu, Arial, Verdana, sans-serif; font-size: 14px;
+            color: rgb(34, 34, 34); background-color: #FFF; ">
+            <p>Dear <b>BIG Manager,</b> </p>
+            <br/>
+            <p>Kindly request to process the New Connection Registration.<br>
+            <br/>
+            <P> <u>Customer Details :-</u><br/>
+            Customer Name            : <b>${object.partner_id.name}</b><br>
+            Licence Number           : <b>${object.license_number}</b><br>
+            CID Number               : <b>${object.cid_number}</b><br>
+            Cylinder Quantity        : <b>${object.cylinder_qty}</b><br>
+            Security Deposit Amount  : <b>${object.security_deposit_amount}</b><br>
+            <br/>
+            <br/>
+            <p>Thank you.<br/>
+            </p> ]]>
+       </field>
+    </record>
+
+    <!-- Email Template  Approved by BIG -->
+    <record id="email_new_connection_approve_big" model="mail.template">
+       <field name="name">New Connection Registration Approve Mail</field>
+       <field name="subject">New Connection Registration Approved by BIG Manager</field>
+       <field name="model_id" ref="model_new_registration_process"/>
+       <field name="auto_delete" eval="False"/>
+       <field name="body_html"><![CDATA[
+            <div style="font-family: 'Lucica Grande',
+            Ubuntu, Arial, Verdana, sans-serif; font-size: 14px;
+            color: rgb(34, 34, 34); background-color: #FFF; ">
+            <p>Dear <b>${object.user_id.name},</b> </p>
+            <br/>
+            <p>New Connection request <b>Approved</b> by BIG.<br>
+            <br/>
+            <P> <u>Customer Details :-</u><br>
+            Reference Number         : <b>${object.number}</b><br>
+            Customer Name            : <b>${object.partner_id.name}</b><br>
+            Licence Number           : <b>${object.license_number}</b><br>
+            CID Number               : <b>${object.cid_number}</b><br>
+            Cylinder Quantity        : <b>${object.cylinder_qty}</b><br>
+            Security Deposit Amount  : <b>${object.security_deposit_amount}</b><br>
+            <br/>
+            <br/>
+            <p>Thank you.<br/>
+            </p> ]]>
+       </field>
+    </record>
+
+    <!-- Email Template Rejected by BIG -->
+    <record id="email_new_connection_reject_big" model="mail.template">
+       <field name="name">New Connection Registration Reject Mail</field>
+       <field name="subject">New Connection Registration Rejected by BIG Manager</field>
+       <field name="model_id" ref="model_new_registration_process"/>
+       <field name="auto_delete" eval="False"/>
+       <field name="body_html"><![CDATA[
+            <div style="font-family: 'Lucica Grande',
+            Ubuntu, Arial, Verdana, sans-serif; font-size: 14px;
+            color: rgb(34, 34, 34); background-color: #FFF; ">
+            <p>Dear <b>${object.user_id.name},</b> </p>
+            </br>
+            <p>New Connection request <b>Rejected</b> by BIG.<br>
+            </br>
+            <P> <u>Customer Details :-</u><br>
+            Customer Name            : <b>${object.partner_id.name}</b><br>
+            Licence Number           : <b>${object.license_number}</b><br>
+            CID Number               : <b>${object.cid_number}</b><br>
+            Cylinder Quantity        : <b>${object.cylinder_qty}</b><br>
+            Security Deposit Amount  : <b>${object.security_deposit_amount}</b><br>
+            <br/>
+            <br/>
+            <p>Thank you.<br/>
+            </p> ]]>
+       </field>
+    </record>
+
+    <!-- Email Template For Additional request to approve  -->
+    <record id="email_additional_connection_request" model="mail.template">
+       <field name="name">Additional Connection Registration Request Mail</field>
+       <field name="subject">Additional Connection Registration Request</field>
+       <field name="model_id" ref="model_additional_connection"/>
+       <field name="lang">${object.lang}</field>
+       <field name="auto_delete" eval="False"/>
+       <field name="body_html"><![CDATA[
+            <div style="font-family: 'Lucica Grande',
+            Ubuntu, Arial, Verdana, sans-serif; font-size: 14px;
+            color: rgb(34, 34, 34); background-color: #FFF; ">
+            <p>Dear <b>BIG Manager,</b> </p>
+            <br/>
+            <p>Kindly request to process the Additional Connection Registration for Reference Number : <b>${object.new_connection_id.number}.</b>
+            <br/>
+            <P> <u>Customer Details :-</u><br/>
+            Reference Number         : <b>${object.new_connection_id.number}</b><br>
+            Customer Name            : <b>${object.new_connection_id.partner_id.name}</b><br>
+            Licence Number           : <b>${object.new_connection_id.license_number}</b><br>
+            CID Number               : <b>${object.new_connection_id.cid_number}</b><br>
+            Cylinder Quantity        : <b>${object.qty}</b><br>
+            Security Deposit Amount  : <b>${object.security_deposit_amount}</b><br>
+            <br/>
+            <br/>
+            <p>Thank you.<br/>
+            </p> ]]>
+       </field>
+    </record>
+
+    <!-- Email Template for Additional Approved by BIG -->
+    <record id="email_additional_connection_approve_big" model="mail.template">
+       <field name="name">Additional Connection Registration Approve Mail</field>
+       <field name="subject">Additionl Connection Registration Approved by BIG Manager</field>
+       <field name="model_id" ref="model_additional_connection"/>
+       <field name="auto_delete" eval="False"/>
+       <field name="body_html"><![CDATA[
+            <div style="font-family: 'Lucica Grande',
+            Ubuntu, Arial, Verdana, sans-serif; font-size: 14px;
+            color: rgb(34, 34, 34); background-color: #FFF; ">
+            <p>Dear <b>${object.new_connection_id.user_id.name},</b> </p>
+            <br/>
+            <p>Additional Connection request for Reference number <b>${object.new_connection_id.number}</b> is <b>Approved</b> by BIG.<br>
+            <br/>
+            <P> <u>Customer Details :-</u><br>
+            Reference Number         : <b>${object.new_connection_id.number}</b><br>
+            Customer Name            : <b>${object.new_connection_id.partner_id.name}</b><br>
+            Licence Number           : <b>${object.new_connection_id.license_number}</b><br>
+            CID Number               : <b>${object.new_connection_id.cid_number}</b><br>
+            Cylinder Quantity        : <b>${object.qty}</b><br>
+            Security Deposit Amount  : <b>${object.security_deposit_amount}</b><br>
+            <br/>
+            <br/>
+            <p>Thank you.<br/>
+            </p> ]]>
+       </field>
+    </record>
+
+    <!-- Email Template for Additional Connection Rejected by BIG -->
+    <record id="email_additional_connection_reject_big" model="mail.template">
+       <field name="name">Additional Connection Registration Reject Mail</field>
+       <field name="subject">Additional Connection Registration Rejected by BIG Manager</field>
+       <field name="model_id" ref="model_additional_connection"/>
+       <field name="auto_delete" eval="False"/>
+       <field name="body_html"><![CDATA[
+            <div style="font-family: 'Lucica Grande',
+            Ubuntu, Arial, Verdana, sans-serif; font-size: 14px;
+            color: rgb(34, 34, 34); background-color: #FFF; ">
+            <p>Dear <b>${object.new_connection_id.user_id.name},</b> </p>
+            </br>
+            <p>Additional Connection request for Reference Number <b>${object.new_connection_id.number}</b> is  <b>Rejected</b> by BIG.<br>
+            </br>
+            <P> <u>Customer Details :-</u><br>
+            Reference Number         : <b>${object.new_connection_id.number}</b><br>
+            Customer Name            : <b>${object.new_connection_id.partner_id.name}</b><br>
+            Licence Number           : <b>${object.new_connection_id.license_number}</b><br>
+            CID Number               : <b>${object.new_connection_id.cid_number}</b><br>
+            Cylinder Quantity        : <b>${object.qty}</b><br>
+            Security Deposit Amount  : <b>${object.security_deposit_amount}</b><br>
+            <br/>
+            <br/>
+            <p>Thank you.<br/>
+            </p> ]]>
+       </field>
+    </record>
+
+    <!-- Email Template For Cancel request to approve  -->
+    <record id="email_surrender_connection_request" model="mail.template">
+       <field name="name">Surrender Connection Request Mail</field>
+       <field name="subject">Surrender Connection Request</field>
+       <field name="model_id" ref="model_cancel_connection"/>
+       <field name="lang">${object.lang}</field>
+       <field name="auto_delete" eval="False"/>
+       <field name="body_html"><![CDATA[
+            <div style="font-family: 'Lucica Grande',
+            Ubuntu, Arial, Verdana, sans-serif; font-size: 14px;
+            color: rgb(34, 34, 34); background-color: #FFF; ">
+            <p>Dear <b>BIG Manager,</b> </p>
+            <br/>
+            <p>Kindly request to process the Surrender Connection for Reference Number : <b>${object.new_connection_id.number}.</b>
+            <br/>
+            <P> <u>Customer Details :-</u><br/>
+            Reference Number         : <b>${object.new_connection_id.number}</b><br>
+            Customer Name            : <b>${object.new_connection_id.partner_id.name}</b><br>
+            Licence Number           : <b>${object.new_connection_id.license_number}</b><br>
+            CID Number               : <b>${object.new_connection_id.cid_number}</b><br>
+            Cylinder Quantity        : <b>${object.cylinder_qty}</b><br>
+            Security Deposit Amount  : <b>${object.security_deposit_amount}</b><br>
+            <br/>
+            <br/>
+            <p>Thank you.<br/>
+            </p> ]]>
+       </field>
+    </record>
+
+    <!-- Email Template for Cancel Approved by BIG -->
+    <record id="email_surrender_connection_approve_big" model="mail.template">
+       <field name="name">Surrender Connection Approve Mail</field>
+       <field name="subject">Surrender Connection Approved by BIG Manager</field>
+       <field name="model_id" ref="model_cancel_connection"/>
+       <field name="auto_delete" eval="False"/>
+       <field name="body_html"><![CDATA[
+            <div style="font-family: 'Lucica Grande',
+            Ubuntu, Arial, Verdana, sans-serif; font-size: 14px;
+            color: rgb(34, 34, 34); background-color: #FFF; ">
+            <p>Dear <b>${object.user_id.name},</b> </p>
+            <br/>
+            <p>Surrender Connection request for Reference number <b>${object.new_connection_id.number}</b> is <b>Approved</b> by BIG.<br>
+            <br/>
+            <P> <u>Customer Details :-</u><br>
+            Reference Number         : <b>${object.new_connection_id.number}</b><br>
+            Customer Name            : <b>${object.new_connection_id.partner_id.name}</b><br>
+            Licence Number           : <b>${object.new_connection_id.license_number}</b><br>
+            CID Number               : <b>${object.new_connection_id.cid_number}</b><br>
+            Cylinder Quantity        : <b>${object.cylinder_qty}</b><br>
+            Security Deposit Amount  : <b>${object.security_deposit_amount}</b><br>
+            <br/>
+            <br/>
+            <p>Thank you.<br/>
+            </p> ]]>
+       </field>
+    </record>
+
+    <!-- Email Template for Cancel Connection Rejected by BIG -->
+    <record id="email_surrender_connection_reject_big" model="mail.template">
+       <field name="name">Surrender Connection Reject Mail</field>
+       <field name="subject">Surrender Connection Rejected by BIG Manager</field>
+       <field name="model_id" ref="model_cancel_connection"/>
+       <field name="auto_delete" eval="False"/>
+       <field name="body_html"><![CDATA[
+            <div style="font-family: 'Lucica Grande',
+            Ubuntu, Arial, Verdana, sans-serif; font-size: 14px;
+            color: rgb(34, 34, 34); background-color: #FFF; ">
+            <p>Dear <b>${object.user_id.name},</b> </p>
+            </br>
+            <p>Surrender Connection request for Reference Number <b>${object.new_connection_id.number}</b> is  <b>Rejected</b> by BIG.<br>
+            </br>
+            <P> <u>Customer Details :-</u><br>
+            Reference Number         : <b>${object.new_connection_id.number}</b><br>
+            Customer Name            : <b>${object.new_connection_id.partner_id.name}</b><br>
+            Licence Number           : <b>${object.new_connection_id.license_number}</b><br>
+            CID Number               : <b>${object.new_connection_id.cid_number}</b><br>
+            Cylinder Quantity        : <b>${object.cylinder_qty}</b><br>
+            Security Deposit Amount  : <b>${object.security_deposit_amount}</b><br>
+            <br/>
+            <br/>
+            <p>Thank you.<br/>
+            </p> ]]>
+       </field>
+    </record>
+
+    <!-- Email Template For request to Update Customer Card Number -->
+    <record id="email_new_card_request" model="mail.template">
+       <field name="name">New Customer Card Replacement Request Mail</field>
+       <field name="subject">New Customer Card Replacement Request</field>
+       <field name="model_id" ref="model_new_registration_process"/>
+       <field name="lang">${object.lang}</field>
+       <field name="auto_delete" eval="False"/>
+       <field name="body_html"><![CDATA[
+            <div style="font-family: 'Lucica Grande',
+            Ubuntu, Arial, Verdana, sans-serif; font-size: 14px;
+            color: rgb(34, 34, 34); background-color: #FFF; ">
+            <p>Dear <b>BIG Manager,</b> </p>
+            <br/>
+            <p>Kindly request to process for New Customer Card Replacement.<br>
+            <br/>
+            <P> <u>Customer Details :-</u><br/>
+            Reference Number         : <b>${object.number}</b><br>
+            Customer Name            : <b>${object.partner_id.name}</b><br>
+            Licence Number           : <b>${object.license_number}</b><br>
+            CID Number               : <b>${object.cid_number}</b><br>
+            Cylinder Quantity        : <b>${object.cylinder_qty}</b><br>
+            Security Deposit Amount  : <b>${object.security_deposit_amount}</b><br>
+            <br/>
+            <br/>
+            <p>Thank you.<br/>
+            </p> ]]>
+       </field>
+    </record>
+</odoo>

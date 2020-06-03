@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit View of account Payment -->
+    <record id="account_payment_form_view_extended" model="ir.ui.view">
+        <field name="name">account.payment.form.view.extended</field>
+        <field name="model">account.payment</field>
+        <field name='inherit_id' ref='account.view_account_payment_form'/>
+        <field name="arch" type="xml">
+            <field name="payment_type" position="before">
+                <field name="is_approved" readonly="True" attrs="{'invisible':[('payment_type','!=','outbound')]}"/>
+            </field>
+            <xpath expr="//button[@name='post']" position="before">
+                <button name="approve_ceo" string="Approve" type="object" class="oe_highlight" attrs="{'invisible':['|',('state','!=','draft'),('is_approved','=',True)]}" groups="big_general.group_big_admin"/>
+            </xpath>
+            <xpath expr="//group[@name='right_column']" position="after">
+                <group name="left_column" attrs="{'invisible':[('payment_type','!=','outbound')]}">
+                    <field name="purchase_id" domain="[('partner_id', '=', partner_id), ('state' ,'in', ('purchase', 'done')), ('invoice_status' ,'=' , 'no')]" options='{"no_edit": True, "no_create": True}'/>
+                    <field name="po_amount"/>
+                </group>
+            </xpath>
+        </field>
+   </record>
+
+    <!-- Inherit View of account Payment for check print -->
+    <record id="account_payment_check_form_view_extended" model="ir.ui.view">
+        <field name="name">account.payment.check.form.view.extended</field>
+        <field name="model">account.payment</field>
+        <field name='inherit_id' ref='account_check_printing.view_account_payment_form_inherited'/>
+        <field name="arch" type="xml">
+            <field name="check_number" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </field>
+        </field>
+   </record>
+
+    <!-- Action for Accountant to pay payment-->
+    <record id="action_due_payment" model="ir.actions.act_window">
+        <field name="name">Pay to Payment</field>
+        <field name="res_model">account.payment</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_id" ref="account.view_account_supplier_payment_tree"/>
+        <field name="domain">[('payment_type','=','outbound'),('state','=','draft'),('is_approved','=',True)]</field>
+        <field name="context">{'default_payment_type': 'outbound', 'default_partner_type': 'supplier','search_default_outbound_filter': 1,'res_partner_search_mode':'supplier'}</field>
+    </record>
+
+    <!-- Menu of supplier invoice of due payment -->
+    <menuitem id="payment_menu" name="Pay to Payment"
+        action="action_due_payment" parent="account.menu_finance_payables" groups="account.group_account_manager,big_general.group_big_admin"/>
+
+    <!-- Action of due payment not approved-->
+    <record id="action_due_payment_remain" model="ir.actions.act_window">
+        <field name="name">Approve Payment</field>
+        <field name="res_model">account.payment</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_id" ref="account.view_account_supplier_payment_tree"/>
+        <field name="domain">[('payment_type','=','outbound'),('state','=','draft'),('is_approved','=',False)]</field>
+        <field name="context">{'default_payment_type': 'outbound', 'default_partner_type': 'supplier','search_default_outbound_filter': 1,'res_partner_search_mode':'supplier'}</field>
+    </record>
+
+    <menuitem id="payment_menu_remain" name="CEO Approve Payments"
+        action="action_due_payment_remain" parent="account.menu_finance_payables" groups="big_general.group_big_admin"/>
+
+</odoo>

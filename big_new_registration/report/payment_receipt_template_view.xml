@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_payment_receipt">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <br/>
+                        <br/>
+                        <div class="col-xs-12"
+                             style="float:right;border: 1px solid #000;height:470px;">
+                            <table width="100%">
+                                <tr>
+                                    <td align="left" style="padding-left:2px;">
+                                        <b>TPN. <span t-field="o.company_id.tpn_number"/></b>
+                                    </td>
+                                    <td align="right"
+                                        style="padding-right:2px;">
+                                        <b>Tel. No. <span t-field="o.new_connection_id.user_id.phone"/></b>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="100%">
+                                <tr>
+                                    <td align="center">
+                                        <h5>
+                                            <strong>
+                                                <u>MONEY RECEIPT</u>
+                                            </strong>
+                                        </h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <h3>
+                                            <strong>BHUTAN INDUSTRIAL GAS </strong>
+                                        </h3>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <h5>
+                                            <strong>
+                                                <span t-field="o.new_connection_id.partner_id.state_id.name"/>
+                                            </strong>
+                                        </h5>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="100%">
+                                <tr>
+                                    <td align="left" style="padding-left:2px;">
+                                        Money Receipt No :
+                                        <b><span t-field="o.money_receipt_no"/></b>
+                                    </td>
+                                    <td align="right"
+                                        style="padding-right:2px;">
+                                        Date :
+                                        <b><span t-field="o.date"/></b>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <table width="100%">
+                                <tr>
+                                    <td width="5%"/>
+                                    <td width="30%" style="padding-left:2px;">
+                                        Received with thanks from
+                                    </td>
+                                    <td width="75%"
+                                        style="border-bottom: 1px solid #000000;">
+                                        <b><span t-field="o.new_connection_id.partner_id.name"/></b>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <table width="100%">
+                                <tr>
+                                    <td width="25%" style="padding-left:2px;">
+                                        the sum of Ngultrums
+                                    </td>
+                                    <td width="95%"
+                                        style="border-bottom: 1px solid #000000;">
+                                            <b><span t-esc="o.get_amount(o.security_deposit_amount)"/>  Only</b>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <table width="100%">
+                                <tr>
+                                    <td width="15%" style="padding-left:2px;">
+                                        Licence Number
+                                    </td>
+                                    <td width="85%"
+                                        style="border-bottom: 1px solid #000000;">
+                                        <b><span t-field="o.new_connection_id.license_number"/></b>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <table width="100%">
+                                <tr>
+                                    <td width="15%" style="padding-left:2px;">
+                                        Received By
+                                    </td>
+                                    <td width="30%"
+                                        style="border-bottom: 1px solid #000000;">
+                                        <b><span t-field="o.create_uid"/></b>
+                                    </td>
+                                    <td>
+                                       <b>By <span t-field="o.payment_mode"/></b>.
+                                    </td>
+                                    <t t-if="o.cheque_no">
+                                        <td>
+                                            <b>Cheque No: </b><u><b><span t-field="o.cheque_no"/></b></u> , <b>Date : </b><u><b><span t-field="o.cheque_date"/></b></u>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </table>
+                            <br/>
+                            <br/>
+                            <table width="100%">
+                                <tr>
+                                    <td width="5%"/>
+                                    <td width="20%"
+                                        style="border-bottom: 1px solid #000000;border-top: 1px solid #000000;border-left: 1px solid #000000;border-right: 1px solid #000000;text-align: center;padding-top: 5px;padding-bottom: 5px;">
+                                        <b><span t-field="o.security_deposit_amount"/></b>
+                                    </td>
+                                    <td width="40%"/>
+                                    <td width="55%">
+                                        <i>for</i>
+                                        <b>Bhutan Industrial Gas</b>
+                                    </td>
+                                    <td/>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate='1'>
+
+        <!-- BIG Category -->
+        <record id="module_category_big_user_security" model="ir.module.category">
+            <field name="name">BIG Users</field>
+            <field name="description">Group for BIG users</field>
+        </record>
+
+        <!-- Group BIG User -->
+        <record id="group_big_user" model="res.groups">
+            <field name="name">BIG User</field>
+            <field name="category_id" ref="module_category_big_user_security"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- Group BIG Manager -->
+        <record id="group_big_manager" model="res.groups">
+            <field name="name">BIG Manager</field>
+            <field name="category_id" ref="module_category_big_user_security"/>
+            <field name="implied_ids" eval="[(4, ref('group_big_user'))]"/>
+        </record>
+
+        <!-- Group BIG Admin -->
+        <record id="group_big_admin" model="res.groups">
+            <field name="name">BIG Admin</field>
+            <field name="category_id" ref="module_category_big_user_security"/>
+            <field name="implied_ids" eval="[(4, ref('group_big_manager'))]"/>
+        </record>
+
+        <!-- Group BIG Auditor -->
+        <record id="group_big_auditor" model="res.groups">
+            <field name="name">BIG Auditor</field>
+            <field name="category_id" ref="module_category_big_user_security"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Bhutan Purchase tax -->
+    <record id="btn_tax_5" model="account.tax">
+        <field name="name">Tax 5%</field>
+        <field name="amount_type">percent</field>
+        <field name="amount">5</field>
+        <field name="type_tax_use">purchase</field>
+    </record>
+    <record id="btn_tax_10" model="account.tax">
+        <field name="name">Tax 10%</field>
+        <field name="amount_type">percent</field>
+        <field name="amount">10</field>
+        <field name="type_tax_use">purchase</field>
+    </record>
+</odoo>

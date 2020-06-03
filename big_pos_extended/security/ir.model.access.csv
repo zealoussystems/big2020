@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+point_of_sale.access_pos_payment_user,pos.payment user,point_of_sale.model_pos_payment,point_of_sale.group_pos_user,1,0,1,0
+point_of_sale.access_pos_order,pos.order,point_of_sale.model_pos_order,point_of_sale.group_pos_user,1,1,1,0

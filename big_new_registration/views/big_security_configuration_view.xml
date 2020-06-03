@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Configuration Security Deposit Form view-->
+    <record id="view_security_deposit_config_form" model="ir.ui.view">
+        <field name="name">view.security.deposit.config.form</field>
+        <field name="model">security.config</field>
+        <field name="arch" type="xml">
+            <form name="big_config_security_form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="start_date" required="True"/>
+                            <field name="security_deposit_amount" required="True"/>
+                            <field name="currency_id" readonly="True"/>
+                        </group>
+                        <group>
+                            <field name="end_date" required="True"/>
+                            <field name="company_id" readonly="True"/>
+                            <field name="user_id" readonly="True"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Configuration Security Deposit Tree view-->
+    <record id="view_security_deposit_config_tree" model="ir.ui.view">
+        <field name="name">view.security.deposit.config.tree</field>
+        <field name="model">security.config</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="security_deposit_amount"/>
+                <field name="currency_id"/>
+                <field name="user_id"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- action for Configuration-->
+    <record id="action_configuration_security" model="ir.actions.act_window">
+        <field name="name">Security Deposit</field>
+        <field name="res_model">security.config</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Submenu Configuration Menu -->
+    <menuitem id="big_sub_menu_configure" parent="big_new_registration.big_master_menu" name="Configuration" sequence="2" groups="big_general.group_big_manager,big_general.group_big_admin"/>
+    <!-- Child menu for Configuration menu -->
+    <menuitem action="action_configuration_security" id="big_child_menu_configuration"
+              parent="big_sub_menu_configure" sequence="1" string="Security Deposit Configuration" groups="big_general.group_big_manager,big_general.group_big_admin"/>
+
+</odoo>

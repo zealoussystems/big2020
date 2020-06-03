@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit View of account move -->
+    <record id="account_move_form_view_extended" model="ir.ui.view">
+        <field name="name">account.move.form.view.extended</field>
+        <field name="model">account.move</field>
+        <field name='inherit_id' ref='account.view_move_form'/>
+        <field name="arch" type="xml">
+            <field name="currency_id" position="after">
+                <field name="is_approved" readonly="True" attrs="{'invisible':[('type','!=','in_invoice')]}"/>
+            </field>
+            <xpath expr="//button[@name='action_post']" position="before">
+                <button name="approve_state" string="Approve" type="object" class="oe_highlight" attrs="{'invisible':['|',('state','!=','posted'),('is_approved','=',True)]}" groups="big_general.group_big_admin"/>
+            </xpath>
+        </field>
+   </record>
+
+
+    <!-- Action of supplier invoice of due payment approved -->
+    <record id="action_invoice_due_payment" model="ir.actions.act_window">
+        <field name="name">Vendor Bills to Payment</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_id" ref="account.view_invoice_tree"/>
+        <field name="domain">[('type','=','in_invoice'),('state','not in',['draft','cancel']),('is_approved','=',True),('invoice_payment_state', '!=', 'paid')]</field>
+        <field name="context">{'default_type': 'in_invoice', 'type': 'in_invoice'}</field>
+        <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+    </record>
+
+    <!-- Menu of supplier invoice of due payment -->
+    <menuitem id="supplier_payment_menu" name="Vendor Bills to Payment"
+        action="action_invoice_due_payment" parent="account.menu_finance_payables" groups="account.group_account_manager,big_general.group_big_admin"/>
+
+    <!-- Action of supplier invoice of due payment not approved-->
+    <record id="action_invoice_due_payment_remain" model="ir.actions.act_window">
+        <field name="name">Approve Vendor Payment</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_id" ref="account.view_invoice_tree"/>
+        <field name="domain">[('type','=','in_invoice'),('state','not in',['draft','cancel']),('is_approved','=',False)]</field>
+        <field name="context">{'default_type': 'in_invoice', 'type': 'in_invoice'}</field>
+        <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+    </record>
+
+    <menuitem id="supplier_payment_menu_remain" name="CEO Approve Vendor Bill Payments"
+        action="action_invoice_due_payment_remain" parent="account.menu_finance_payables" groups="big_general.group_big_admin"/>
+
+</odoo>

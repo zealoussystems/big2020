@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+big_new_connecton_manager,big.new.connection.manager,big_new_registration.model_new_registration_process,big_general.group_big_manager,1,1,1,1
+big_new_connection_admin,big.new.connection.admin,big_new_registration.model_new_registration_process,big_general.group_big_admin,1,1,1,1
+big_new_connection_user,big.new.connection.user,big_new_registration.model_new_registration_process,big_general.group_big_user,1,1,1,0
+big_additional_connecton_manager,big.additional.connection.manager,big_new_registration.model_additional_connection,big_general.group_big_manager,1,1,1,1
+big_additional_connection_admin,big.additional.connection.admin,big_new_registration.model_additional_connection,big_general.group_big_admin,1,1,1,1
+big_additional_connection_user,big.additional.connection.user,big_new_registration.model_additional_connection,big_general.group_big_user,1,1,1,0
+big_connecton_history_manager,big.connection.history.manager,big_new_registration.model_connection_history,big_general.group_big_manager,1,1,1,1
+big_connecton_history_admin,big.connection.history.admin,big_new_registration.model_connection_history,big_general.group_big_admin,1,1,1,1
+big_connecton_history_user,big.connection.history.user,big_new_registration.model_connection_history,big_general.group_big_user,1,1,1,0
+big_cancel_connection_manager,big.cancel.connection.manager,big_new_registration.model_cancel_connection,big_general.group_big_manager,1,1,1,1
+big_cancel_connection_admin,big.cancel.connection.admin,big_new_registration.model_cancel_connection,big_general.group_big_admin,1,1,1,1
+big_cancel_connection_user,big.cancel.connection.user,big_new_registration.model_cancel_connection,big_general.group_big_user,1,1,1,0
+big_config_security_manager,security.config.manager,big_new_registration.model_security_config,big_general.group_big_manager,1,1,1,1
+big_config_security_admin,security.config.admin,big_new_registration.model_security_config,big_general.group_big_admin,1,1,1,1
+big_config_security_user,security.config.user,big_new_registration.model_security_config,big_general.group_big_user,1,1,1,0
+big_payment_user,big.payment.user,account.model_account_payment,big_general.group_big_user,1,1,1,0

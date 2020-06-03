@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Res users Form extended-->
+    <record id="inherit_view_res_users_form" model="ir.ui.view">
+        <field name="name">inherit.view.res.users.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='access_rights']" position="after">
+                <page name="stock_page" string="Stock Configuration">
+                    <group>
+                        <field name="warehouse_id"/>
+                        <field name="stock_location_id"/>
+                        <field name="customer_damage_location_id"/>
+                        <field name="location_ids" widget="many2many_tags"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

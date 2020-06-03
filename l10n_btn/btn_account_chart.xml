@@ -1,0 +1,1279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="res.currency" id="base.BTN">
+        <field name="active">True</field>
+    </record>
+    <record model="account.account.template" id="a1206003">
+        <field name="name">Finance Transfer</field>
+        <field name="code">1206003</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+    </record>
+
+    <!-- Bhutan Chart of Account-->
+    <record id="bhutan_chart_template" model="account.chart.template">
+        <field name="name">Bhutan - Chart of Accounts</field>
+        <field name="code_digits">7</field>
+        <field name="bank_account_code_prefix">1006</field>
+        <field name="cash_account_code_prefix">1007</field>
+        <field name="currency_id" ref="base.BTN"/>
+        <field name="transfer_account_code_prefix" ref="a1206003"/>
+    </record>
+
+    <!-- Account Receivable -->
+    <record model="account.account.template" id="a100">
+        <field name="name">Accounts Receivables</field>
+        <field name="code">100</field>
+        <field name="reconcile" eval="True"/>
+        <field name="user_type_id" ref="account.data_account_type_receivable"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <record model="account.account.template" id="pos100">
+        <field name="name">Pos Accounts Receivables</field>
+        <field name="code">P100</field>
+        <field name="reconcile" eval="True"/>
+        <field name="user_type_id" ref="account.data_account_type_receivable"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <!-- Account Payable -->
+    <record model="account.account.template" id="a200">
+        <field name="name">Account Payable</field>
+        <field name="code">200</field>
+        <field name="reconcile" eval="True"/>
+        <field name="user_type_id" ref="account.data_account_type_payable"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <!-- Bank and Cash -->
+    <record model="account.account.template" id="a1006002">
+        <field name="name">Cash and cash equivalents:BNB A/c No. xxx5007</field>
+        <field name="code">1006002</field>
+        <field name="user_type_id" ref="account.data_account_type_liquidity"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1006003">
+        <field name="name">Cash and cash equivalents:BNB A/c. No. xxx1016</field>
+        <field name="code">1006003</field>
+        <field name="user_type_id" ref="account.data_account_type_liquidity"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1006004">
+        <field name="name">Cash and cash equivalents:BNB A/c. xxx4018</field>
+        <field name="code">1006004</field>
+        <field name="user_type_id" ref="account.data_account_type_liquidity"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1006005">
+        <field name="name">Cash and cash equivalents:BOB - Thimphu xx8380</field>
+        <field name="code">1006005</field>
+        <field name="user_type_id" ref="account.data_account_type_liquidity"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1006006">
+        <field name="name">Cash and cash equivalents:BoB A/c. xxx1984</field>
+        <field name="code">1006006</field>
+        <field name="user_type_id" ref="account.data_account_type_liquidity"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1006007">
+        <field name="name">Cash and cash equivalents:Druk PNB OD Acc x0767</field>
+        <field name="code">1006007</field>
+        <field name="user_type_id" ref="account.data_account_type_liquidity"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1006008">
+        <field name="name">Cash and cash equivalents:PNB A/c. xxx1032</field>
+        <field name="code">1006008</field>
+        <field name="user_type_id" ref="account.data_account_type_liquidity"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <!-- Fixed Assets -->
+    <record model="account.account.template" id="a110">
+        <field name="name">Fixed Assets</field>
+        <field name="code">110</field>
+        <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1101">
+        <field name="name">Accumulated depreciation on property,plant and equipment</field>
+        <field name="code">1101</field>
+        <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1102">
+        <field name="name">Capital Work in Progress</field>
+        <field name="code">1102</field>
+        <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1103">
+        <field name="name">Computer Equipment</field>
+        <field name="code">1103</field>
+        <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1104">
+        <field name="name">Construction WIP</field>
+        <field name="code">1104</field>
+        <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1105">
+        <field name="name">Empty Cylinders</field>
+        <field name="code">1105</field>
+        <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1106">
+        <field name="name">Furniture and Fixtures</field>
+        <field name="code">1106</field>
+        <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1107">
+        <field name="name">Godown - Thimphu</field>
+        <field name="code">1107</field>
+        <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1108">
+        <field name="name">Godown Shed (Semi Permanent) - Pling</field>
+        <field name="code">1108</field>
+        <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1109">
+        <field name="name">Godown Shed (Semi Permanent)- Thimphu</field>
+        <field name="code">1109</field>
+        <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1110">
+        <field name="name">Machinery and equipment</field>
+        <field name="code">1110</field>
+        <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1111">
+        <field name="name">Property, plant and equipment</field>
+        <field name="code">11111</field>
+        <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1112">
+        <field name="name">Tally ERP9</field>
+        <field name="code">11112</field>
+        <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1113">
+        <field name="name">Vehicles</field>
+        <field name="code">11113</field>
+        <field name="user_type_id" ref="account.data_account_type_fixed_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <!--Current Assets -->
+    <record model="account.account.template" id="a120">
+        <field name="name">Current Assets</field>
+        <field name="code">120</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1201">
+        <field name="name">Advance - Fuel</field>
+        <field name="code">1201</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1202">
+        <field name="name">Advance Payment</field>
+        <field name="code">1202</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1203">
+        <field name="name">Advance to Staff</field>
+        <field name="code">1203</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1204">
+        <field name="name">Allowance for bad debt</field>
+        <field name="code">1204</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1205">
+        <field name="name">Available for sale assets (short-term)</field>
+        <field name="code">1205</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1206">
+        <field name="name">BST Advance (Central Region)</field>
+        <field name="code">1206</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1207">
+        <field name="name">BST Advance (Eastern Region)</field>
+        <field name="code">1207</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1208">
+        <field name="name">BST Advance (Western Region)</field>
+        <field name="code">1208</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1209">
+        <field name="name">Inventory</field>
+        <field name="code">1209</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1210">
+        <field name="name">Inventory:Inventory - LPG (Refilled)</field>
+        <field name="code">1210</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1211">
+        <field name="name">Inventory Asset</field>
+        <field name="code">1211</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1212">
+        <field name="name">IOCL - Dhaligaon (Central Region)</field>
+        <field name="code">1212</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1213">
+        <field name="name">IOCL - Raninagar (Western Region)</field>
+        <field name="code">1213</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1214">
+        <field name="name">IOCL - Sapara (Eastern Region)</field>
+        <field name="code">1214</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1215">
+        <field name="name">Mobilization Advance to Contractor</field>
+        <field name="code">1215</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1216">
+        <field name="name">Prepaid expenses</field>
+        <field name="code">1216</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1217">
+        <field name="name">Security Deposit - Advance</field>
+        <field name="code">1217</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1218">
+        <field name="name">Uncategorised Asset</field>
+        <field name="code">1218</field>
+        <field name="user_type_id" ref="account.data_account_type_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <!--Non Current Assets-->
+    <record model="account.account.template" id="a1301">
+        <field name="name">Assets held for sale</field>
+        <field name="code">1301</field>
+        <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1302">
+        <field name="name">Deferred tax assets</field>
+        <field name="code">1302</field>
+        <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1303">
+        <field name="name">Goodwill</field>
+        <field name="code">1303</field>
+        <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1304">
+        <field name="name">Intangibles</field>
+        <field name="code">1304</field>
+        <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a1305">
+        <field name="name">Long-Term Investments</field>
+        <field name="code">1305</field>
+        <field name="user_type_id" ref="account.data_account_type_non_current_assets"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <!--Equity-->
+    <record model="account.account.template" id="a2101">
+        <field name="name">Dividend disbursed</field>
+        <field name="code">2101</field>
+        <field name="user_type_id" ref="account.data_account_type_equity"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a2102">
+        <field name="name">Equity in earnings of subsidiaries</field>
+        <field name="code">2102</field>
+        <field name="user_type_id" ref="account.data_account_type_equity"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a2103">
+        <field name="name">Opening Balance Equity</field>
+        <field name="code">2103</field>
+        <field name="user_type_id" ref="account.data_account_type_equity"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a2104">
+        <field name="name">Other comprehensive income</field>
+        <field name="code">2104</field>
+        <field name="user_type_id" ref="account.data_account_type_equity"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a2105">
+        <field name="name">Retained Earnings</field>
+        <field name="code">2105</field>
+        <field name="user_type_id" ref="account.data_account_type_equity"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a2106">
+        <field name="name">Share capital</field>
+        <field name="code">2106</field>
+        <field name="user_type_id" ref="account.data_account_type_equity"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <!-- Current Laibility -->
+    <record model="account.account.template" id="a310">
+        <field name="name">Current Laibility</field>
+        <field name="code">310</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3101">
+        <field name="name">Accrued liabilities</field>
+        <field name="code">3101</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3102">
+        <field name="name">Dividends payable</field>
+        <field name="code">3102</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3103">
+        <field name="name">Health Contribution</field>
+        <field name="code">3103</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3104">
+        <field name="name">Income tax payable</field>
+        <field name="code">3104</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3105">
+        <field name="name">Payroll Clearing</field>
+        <field name="code">3105</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3106">
+        <field name="name">Payroll liabilities</field>
+        <field name="code">3106</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3107">
+        <field name="name">Provident Fund - Employee</field>
+        <field name="code">3107</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3108">
+        <field name="name">Provident Fund A/c</field>
+        <field name="code">3108</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3109">
+        <field name="name">Security Deposit for Cylinder</field>
+        <field name="code">3109</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a31010">
+        <field name="name">Short-term debit</field>
+        <field name="code">310101</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a31011">
+        <field name="name">TDS on Salary</field>
+        <field name="code">31011</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a31012">
+        <field name="name">TDS Payable (2%)</field>
+        <field name="code">31012</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a31013">
+        <field name="name">TDS Payable (5%)</field>
+        <field name="code">31013</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <!--Non Current Laibility-->
+    <record model="account.account.template" id="a320">
+        <field name="name">Non Current laibility</field>
+        <field name="code">320</field>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3201">
+        <field name="name">Accrued holiday payable</field>
+        <field name="code">3201</field>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3202">
+        <field name="name">Accrued non-current liabilities</field>
+        <field name="code">3202</field>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3203">
+        <field name="name">BOB Loan xx4077</field>
+        <field name="code">3203</field>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3204">
+        <field name="name">Liabilities related to assets held for sale</field>
+        <field name="code">3204</field>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3205">
+        <field name="name">Long-term debt</field>
+        <field name="code">3205</field>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3206">
+        <field name="name">Term Loan xx49</field>
+        <field name="code">3206</field>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a3207">
+        <field name="name">Term Loan xx85</field>
+        <field name="code">3207</field>
+        <field name="user_type_id" ref="account.data_account_type_non_current_liabilities"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <!--Income-->
+    <record model="account.account.template" id="a410">
+        <field name="name">Income</field>
+        <field name="code">410</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4101">
+        <field name="name">Billable Expense Income</field>
+        <field name="code">4101</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4102">
+        <field name="name">Income from Delivery (LPG)</field>
+        <field name="code">4102</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4103">
+        <field name="name">Revenue - General</field>
+        <field name="code">4103</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4104">
+        <field name="name">Sales</field>
+        <field name="code">4104</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4105">
+        <field name="name">Sales-Cylinder (Refilled)</field>
+        <field name="code">4105</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4106">
+        <field name="name">Sales - Cylinder (Refilled):Sales - Central Region</field>
+        <field name="code">4106</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4107">
+        <field name="name">Sales-Cylinder (Refilled):Sales-Central Region:Sales-Gelephu Region</field>
+        <field name="code">4107</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4108">
+        <field name="name">Sales-Cylinder (Refilled):Sales-Central Region:Sales-Trongsa Region</field>
+        <field name="code">4108</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4109">
+        <field name="name">Sales-Cylinder (Refilled):Sales-Eastern Region</field>
+        <field name="code">4109</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4110">
+        <field name="name">Sales-Cylinder (Refilled):Sales-Eastern Region:Sales-S/Jongkhar Region</field>
+        <field name="code">4110</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4111">
+        <field name="name">Sales-Cylinder (Refilled):Sales-Eastern Region:Sales-Tashigang Region</field>
+        <field name="code">4111</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4112">
+        <field name="name">Sales-Cylinder (Refilled):Sales-Western Region</field>
+        <field name="code">4112</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4113">
+        <field name="name">Sales-Cylinder (Refilled):Sales-Western Region:Sales-Paro Region</field>
+        <field name="code">4113</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4114">
+        <field name="name">Sales-Cylinder (Refilled):Sales-Western Region:Sales-Phuntsholing Region</field>
+        <field name="code">4114</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4115">
+        <field name="name">Sales-Cylinder (Refilled):Sales-Western Region:Sales-Punakha Region</field>
+        <field name="code">4115</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4116">
+        <field name="name">Sales-Cylinder (Refilled):Sales-Western Region:Sales-Samtse Region</field>
+        <field name="code">4116</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4117">
+        <field name="name">Sales-Cylinder (Refilled):Sales-Western Region:Sales-Thimphu Region</field>
+        <field name="code">4117</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4118">
+        <field name="name">Sales-Cylinder (Refilled):Sales-Western Region:Sales-Wangdue Region</field>
+        <field name="code">4118</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4119">
+        <field name="name">Sales-retail</field>
+        <field name="code">4119</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4120">
+        <field name="name">Sales-wholesale</field>
+        <field name="code">4120</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4121">
+        <field name="name">Sales of Product Income</field>
+        <field name="code">4121</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4122">
+        <field name="name">Uncategorised Income</field>
+        <field name="code">4122</field>
+        <field name="user_type_id" ref="account.data_account_type_revenue"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <!-- Other Income -->
+    <record model="account.account.template" id="a420">
+        <field name="name">Other Income</field>
+        <field name="code">420</field>
+        <field name="user_type_id" ref="account.data_account_type_other_income"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4201">
+        <field name="name">Dividend income</field>
+        <field name="code">4201</field>
+        <field name="user_type_id" ref="account.data_account_type_other_income"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4202">
+        <field name="name">Interest income</field>
+        <field name="code">4202</field>
+        <field name="user_type_id" ref="account.data_account_type_other_income"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4203">
+        <field name="name">Loss on disposal of assets</field>
+        <field name="code">4203</field>
+        <field name="user_type_id" ref="account.data_account_type_other_income"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4204">
+        <field name="name">Other operating income (expenses)</field>
+        <field name="code">4204</field>
+        <field name="user_type_id" ref="account.data_account_type_other_income"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a4205">
+        <field name="name">Unrealised loss on securities, net of tax</field>
+        <field name="code">4205</field>
+        <field name="user_type_id" ref="account.data_account_type_other_income"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <!-- Expense -->
+    <record model="account.account.template" id="a510">
+        <field name="name">Expenses</field>
+        <field name="code">510</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5101">
+        <field name="name">Amortisation expense</field>
+        <field name="code">5101</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5102">
+        <field name="name">Bad debts</field>
+        <field name="code">5102</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5103">
+        <field name="name">Bank charges</field>
+        <field name="code">5103</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5104">
+        <field name="name">BST on Goods</field>
+        <field name="code">5104</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5105">
+        <field name="name">Commissions and fees</field>
+        <field name="code">5105</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5106">
+        <field name="name">Corporate Allowance</field>
+        <field name="code">5106</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5107">
+        <field name="name">Dues and subscriptions</field>
+        <field name="code">5107</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5108">
+        <field name="name">Electricity Expense</field>
+        <field name="code">5108</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5109">
+        <field name="name">Equipment rental</field>
+        <field name="code">5109</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5110">
+        <field name="name">Fuel Expenses</field>
+        <field name="code">5110</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5111">
+        <field name="name">Income tax expense</field>
+        <field name="code">5111</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5112">
+        <field name="name">Insurance - Disability</field>
+        <field name="code">5112</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5113">
+        <field name="name">Insurance - General</field>
+        <field name="code">5113</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5114">
+        <field name="name">Insurance - Liability</field>
+        <field name="code">5114</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5115">
+        <field name="name">Interest expense</field>
+        <field name="code">5115</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5116">
+        <field name="name">Interest expense:Interest expense - BOB Loan xx4077</field>
+        <field name="code">5116</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5117">
+        <field name="name">Interest expense:Interest expense - Term Loan xx49</field>
+        <field name="code">5117</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5118">
+        <field name="name">Interest expense:Interest expense - Term Loan xx85</field>
+        <field name="code">5118</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5119">
+        <field name="name">Interest expense:Interest Expenses - PNB OD</field>
+        <field name="code">5119</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5120">
+        <field name="name">Internet Expenses</field>
+        <field name="code">5120</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5121">
+        <field name="name">Lease Rent</field>
+        <field name="code">5121</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5122">
+        <field name="name">Legal and professional fees</field>
+        <field name="code">5122</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5123">
+        <field name="name">License Renewal Fees</field>
+        <field name="code">5123</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5124">
+        <field name="name">Loss on discontinued operations,net of tax</field>
+        <field name="code">5124</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5125">
+        <field name="name">Management compensation</field>
+        <field name="code">5125</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5126">
+        <field name="name">Meals and entertainment</field>
+        <field name="code">5126</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5127">
+        <field name="name">Miscellaneous Expenses</field>
+        <field name="code">5127</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5128">
+        <field name="name">Office expenses</field>
+        <field name="code">5128</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5129">
+        <field name="name">Office Rent</field>
+        <field name="code">5129</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5130">
+        <field name="name">Office Rent:Office Rent- Gelephu</field>
+        <field name="code">5130</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5131">
+        <field name="name">Office Rent:Office Rent- Pling</field>
+        <field name="code">5131</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5132">
+        <field name="name">Office Rent:Office Rent- S/Jongkhar</field>
+        <field name="code">5132</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5133">
+        <field name="name">Office Rent:Office Rent- Thimphu Godown</field>
+        <field name="code">5133</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5134">
+        <field name="name">Office Rent:Office Rent- Thimphu HO</field>
+        <field name="code">5134</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5135">
+        <field name="name">Other Allowance</field>
+        <field name="code">5135</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5136">
+        <field name="name">Other general and administrative expenses</field>
+        <field name="code">5136</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5137">
+        <field name="name">Other selling expenses</field>
+        <field name="code">5137</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5138">
+        <field name="name">Other Types of Expenses-Advertising Expenses</field>
+        <field name="code">5138</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5139">
+        <field name="name">Payroll Expenses</field>
+        <field name="code">5139</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5140">
+        <field name="name">Postage Telegram Expenses</field>
+        <field name="code">5140</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5141">
+        <field name="name">Provident Fund - Employer</field>
+        <field name="code">5141</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5142">
+        <field name="name">Purchases</field>
+        <field name="code">5142</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5143">
+        <field name="name">Rent or lease payments</field>
+        <field name="code">5143</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5144">
+        <field name="name">Repairs and Maintenance</field>
+        <field name="code">5144</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5145">
+        <field name="name">Repairs and Maintenance:Repair and Maintenance - Office</field>
+        <field name="code">5145</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5146">
+        <field name="name">Repairs and Maintenance:Repair and maintenance - Vehicle</field>
+        <field name="code">5146</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5147">
+        <field name="name">Salary Expense</field>
+        <field name="code">5147</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5148">
+        <field name="name">Salary Expense:Salary - S/Jongkhar</field>
+        <field name="code">5148</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5149">
+        <field name="name">Salary Expense:Salary- Drukda</field>
+        <field name="code">5149</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+        <record model="account.account.template" id="a5150">
+        <field name="name">Salary Expense:Salary- Gelephu</field>
+        <field name="code">5150</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5151">
+        <field name="name">Salary Expense:Salary- Pling</field>
+        <field name="code">5151</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5152">
+        <field name="name">Salary Expense:Salary- Thimphu</field>
+        <field name="code">5152</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5153">
+        <field name="name">Shipping and delivery expense</field>
+        <field name="code">5153</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5154">
+        <field name="name">Stationery and printing</field>
+        <field name="code">5154</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5155">
+        <field name="name">Supplies</field>
+        <field name="code">5155</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5156">
+        <field name="name">Telephone Expenses</field>
+        <field name="code">5156</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5157">
+        <field name="name">Transportation Expenses</field>
+        <field name="code">5157</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5158">
+        <field name="name">Travel expenses - general and admin expenses</field>
+        <field name="code">5158</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5159">
+        <field name="name">Travel expenses - selling expenses</field>
+        <field name="code">5159</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5160">
+        <field name="name">Uncategorised Expense</field>
+        <field name="code">5160</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5161">
+        <field name="name">Utilities</field>
+        <field name="code">5161</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5162">
+        <field name="name">Wage expenses</field>
+        <field name="code">5162</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5163">
+        <field name="name">Water Expenses</field>
+        <field name="code">5163</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <!--Cost Of Sales-->
+    <record model="account.account.template" id="a5201">
+        <field name="name">Change in inventory - COS</field>
+        <field name="code">5201</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5202">
+        <field name="name">Cost of Labour -COS</field>
+        <field name="code">5202</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5203">
+        <field name="name">Cost of Labour -COS:Loading Unloading Charges - Central Region</field>
+        <field name="code">5203</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5204">
+        <field name="name">Cost of Labour -COS:Loading unloading Charges - Eastern Region</field>
+        <field name="code">5204</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5205">
+        <field name="name">Cost of Labour -COS:Loading Unloading Charges - Western Region</field>
+        <field name="code">5205</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5206">
+        <field name="name">Cost of sales</field>
+        <field name="code">5206</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5207">
+        <field name="name">Delivery Expenses-COS</field>
+        <field name="code">5207</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5208">
+        <field name="name">Direct labour-COS</field>
+        <field name="code">5208</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5209">
+        <field name="name">Discounts given-COS</field>
+        <field name="code">5209</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5210">
+        <field name="name">Freight and delivery-COS</field>
+        <field name="code">5210</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5211">
+        <field name="name">Fuel Expenses-COS</field>
+        <field name="code">5211</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5212">
+        <field name="name">Inventory - Cylinder (Refilled) COS</field>
+        <field name="code">5212</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5213">
+        <field name="name">Inventory - Cylinder (Refilled) COS:COS - Central Region</field>
+        <field name="code">5213</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5214">
+        <field name="name">Inventory-Cylinder (Refilled) COS:COS - Eastern Region</field>
+        <field name="code">5214</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5215">
+        <field name="name">Inventory-Cylinder (Refilled) COS:COS - Western Region</field>
+        <field name="code">5215</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5216">
+        <field name="name">Marine Insurance</field>
+        <field name="code">5216</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5217">
+        <field name="name">Materials-COS</field>
+        <field name="code">5217</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5218">
+        <field name="name">Other-COS</field>
+        <field name="code">5218</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5219">
+        <field name="name">Overhead-COS</field>
+        <field name="code">5219</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5220">
+        <field name="name">Subcontractors-COS</field>
+        <field name="code">5220</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5221">
+        <field name="name">Transportation Charges-COS</field>
+        <field name="code">5221</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5222">
+        <field name="name">Transportation Charges-COS:Freight and delivery-COS</field>
+        <field name="code">5222</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5223">
+        <field name="name">Transportation Charges-COS:Transportation Charges-Eastern Region</field>
+        <field name="code">5223</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5224">
+        <field name="name">Transportation Charges-COS:Transportation Charges-Western Region</field>
+        <field name="code">5224</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5225">
+        <field name="name">Transportation Charges-COS:Transportation Charges-Central Region</field>
+        <field name="code">5225</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <!--Other Expenses-->
+    <record model="account.account.template" id="a5301">
+        <field name="name">Depreciation Expenses</field>
+        <field name="code">5301</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5302">
+        <field name="name">Donations</field>
+        <field name="code">5302</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5303">
+        <field name="name">Expenses for Tax add back</field>
+        <field name="code">5303</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5304">
+        <field name="name">Fines Penalities</field>
+        <field name="code">5304</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5305">
+        <field name="name">Loss Damages</field>
+        <field name="code">5305</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+    <record model="account.account.template" id="a5306">
+        <field name="name">Reconciliation Discrepancies</field>
+        <field name="code">5306</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <record id="gain81_01" model="account.account.template">
+        <field name="code">7777</field>
+        <field name="name">Income Currency Exchange</field>
+        <field name="user_type_id" ref="account.data_account_type_other_income"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <record id="loss81_01" model="account.account.template">
+        <field name="code">8888</field>
+        <field name="name">Expense Currency Exchange</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+        <field name="chart_template_id" ref="bhutan_chart_template"/>
+    </record>
+
+    <!-- Chart of account Links -->
+    <record id="l10n_btn.bhutan_chart_template" model="account.chart.template">
+        <field name="property_account_receivable_id" ref="a100"/>
+        <field name="property_account_payable_id" ref="a200"/>
+        <field name="property_account_expense_categ_id" ref="a510"/>
+        <field name="property_account_income_categ_id" ref="a410"/>
+        <field name="income_currency_exchange_account_id" ref="gain81_01"/>
+        <field name="expense_currency_exchange_account_id" ref="loss81_01"/>
+        <field name="default_pos_receivable_account_id" ref="pos100"/>
+    </record>
+</odoo>

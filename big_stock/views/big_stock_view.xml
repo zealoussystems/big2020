@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Inherit View of stock Picking -->
+    <record id="stock_picling_inherit_big_stock" model="ir.ui.view">
+        <field name="name">stock.picking.inherit.big.stock</field>
+        <field name="model">stock.picking</field>
+        <field name='inherit_id' ref='stock.view_picking_form'/>
+        <field name="arch" type="xml">
+            <field name="picking_type_id" position="after">
+                <field name="picking_type_code" invisible="1"/>
+                <field name="transfer_picking_id" attrs="{'invisible':['|',('picking_type_id','=',False),('picking_type_code', '!=' ,'internal')], 'readonly':[('state','!=', 'draft')]}" options="{'no_edit':True,'no_create':True}"/>
+            </field>
+            <field name="origin" position="after">
+                <field name="vehical_no" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                <field name="driver_name" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                <field name="is_new_picking" readonly="True"/>
+            </field>
+            <xpath expr="//button[@name='action_picking_move_tree']" position="before">
+                <button type="object" string="New Product"
+                        name="create_new_sequence"
+                        class="oe_stat_button"
+                        icon="fa-list-alt">
+                </button>
+                <button type="object" string="Reset New Product"
+                        name="reset_new_product"
+                        class="oe_stat_button"
+                        icon="fa-list-alt">
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom']" position="after">
+                <field name="account_move_id" readonly="True"/>
+                <field name="amount_total"/>
+                <field name="is_invoice" invisible="True"/>
+                <button type="object" string="Create Invoice"
+                        name="create_invoice" icon="fa-money" attrs="{'invisible': ['|',('state' ,'not in', ['done']),
+                        ('is_invoice','=',True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='move_ids_without_package']/form/group/field[@name='description_picking']" position="after">
+                <field name="account_move_id" readonly="True"/>
+                <field name="is_invoice" invisible="True"/>
+            </xpath>
+        </field>
+   </record>
+
+</odoo>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--pos order Form extended-->
+    <record id="inherit_view_pos_order_form" model="ir.ui.view">
+        <field name="name">inherit.view.pos.order.form</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <field name="picking_id" position="after">
+                <field name="new_connection_id" readonly="True"/>
+                <field name="is_new_connection" readonly="True"/>
+            </field>
+            <field name="partner_id" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+        </field>
+    </record>
+
+    <!-- New Connection form extended -->
+    <record id="inherit_view_new_registration_form" model="ir.ui.view">
+        <field name="name">inherit.view.new.registration.form</field>
+        <field name="model">new.registration.process</field>
+        <field name="inherit_id" ref="big_new_registration.view_new_registration_form"/>
+        <field name="arch" type="xml">
+            <field name="money_receipt_no" position="after">
+                <field name="remaining_qty_deliver"/>
+            </field>
+            <xpath expr="//notebook" position="inside" >
+                <page name="pos_order" string="Point of Sale" attrs="{'invisible':[('state','not in', ['done', 'cancel_sales_point', 'cancel_big'])]}">
+                    <field name="pos_order_ids">
+                        <tree string="POS Orders" decoration-info="state == 'draft'" decoration-muted="state in ('done','cancel')" create="0">
+                            <field name="currency_id" invisible="1"/>
+                            <field name="state" invisible="1"/>
+                            <field name="name"/>
+                            <field name="session_id"/>
+                            <field name="date_order"/>
+                            <field name="pos_reference"/>
+                            <field name="partner_id"/>
+                            <field string="Cashier" name="user_id"/>
+                            <field name="amount_total" sum="Amount total" widget="monetary"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Res Partner Form extended-->
+    <record id="inherit_pos_partner_form" model="ir.ui.view">
+        <field name="name">inherit.pos.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                <field name="register_qty"/>
+                <field name="remaining_qty" readonly="True"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

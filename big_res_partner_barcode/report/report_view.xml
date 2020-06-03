@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <report
+            id="report_partner_barcode"
+            string="Partner Barcode (PDF)"
+            model="res.partner"
+            report_type="qweb-pdf"
+            name="big_res_partner_barcode.report_partner_barcode"
+            file="big_res_partner_barcode.report_partner_barcode"
+            print_report_name="'Partner barcode - %s' % (object.name)"
+        />
+</odoo>
